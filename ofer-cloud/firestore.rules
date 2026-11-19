@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email == 'ofer8070@gmail.com'
+        && request.auth.token.email_verified == true
+        && request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+    function approved(appId) {
+      return signedIn()
+        && exists(/databases/$(database)/documents/members/$(request.auth.uid))
+        && get(/databases/$(database)/documents/members/$(request.auth.uid)).data.blocked == false
+        && get(/databases/$(database)/documents/members/$(request.auth.uid)).data.apps[appId] == true;
+    }
+
+    // An unapproved user can submit only their own initial request.
+    match /accessRequests/{uid} {
+      allow get: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow list: if isAdmin();
+      allow create: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'status', 'requestedAt', 'appId'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.status == 'pending'
+        && request.resource.data.appId == 'daily-sales'
+        && request.resource.data.requestedAt is number;
+      allow update, delete: if isAdmin();
+    }
+
+    // Only the verified Google administrator can grant or revoke membership.
+    match /members/{uid} {
+      allow get: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow list: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Shared daily sales are available only to approved workers and the admin.
+    match /dailySales/{reportId} {
+      allow read, write: if isAdmin() || approved('daily-sales');
+    }
+
+    // All other documents stay private unless an app-specific rule is added.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
