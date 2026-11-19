@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#103c2d"><title>נסיעות - גרסה חדשה</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e9f4eb;color:#163226;font-family:Arial,"Arial Hebrew",sans-serif;font-size:17px}main{max-width:650px;margin:auto;padding:15px 14px 80px}h1{text-align:center;margin:8px 0;font-size:32px;color:#15583c}h2{font-size:21px;margin:4px 0 13px}.card{background:white;border:1px solid #cbded0;border-radius:17px;padding:15px;margin:12px 0;box-shadow:0 2px 7px #0001}.muted{font-size:13px;color:#64766a;line-height:1.5}label{font-weight:bold;display:block;margin:9px 0 5px}input,select{width:100%;padding:12px;border:1px solid #adc6b5;border-radius:10px;font:inherit;background:#f5fcf7;color:#163226;min-width:0}input[type=date]{max-width:190px}input[type=time]{max-width:138px}input[type=number]{font-size:25px;font-weight:bold}button{border:0;border-radius:11px;padding:13px 17px;font:inherit;font-weight:bold;cursor:pointer;background:#16714a;color:white}button:disabled{opacity:.5}.sub{background:#edf5ef;color:#1a533a;border:1px solid #bfd6c5}.danger{background:#a53232}.small{font-size:14px;padding:8px 11px}.flex{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.flex>*{flex:1}.mic-wrap{text-align:center;padding:12px 0 3px}.mic{width:126px;height:126px;border-radius:50%;font-size:56px;background:linear-gradient(150deg,#208359,#0d4e36);box-shadow:0 7px 0 #a3caba,0 0 0 9px #e5f5e9;display:inline-flex;align-items:center;justify-content:center;border:0}.mic.on{background:#d93140;box-shadow:0 0 0 13px #ffdfe2;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(1.05)}}.msg{text-align:center;min-height:24px;font-weight:bold;color:#15583c;margin-top:12px}.types{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.type{background:#f1f7f3;color:#28533c;border:2px solid #d3e5d8;padding:11px 2px;font-size:15px}.type.active{background:#176742;color:white;border-color:#176742}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tile{background:#edf7f0;padding:12px;border-radius:12px;text-align:center}.tile b{display:block;font-size:26px;margin:6px 0;color:#125238;font-variant-numeric:tabular-nums}.tile small{color:#617368}#save{width:100%;background:#e9c832;color:#172816;margin-top:13px;font-size:22px}.row-trip{padding:12px 0;border-bottom:1px solid #dce9de;display:flex;justify-content:space-between;gap:8px;align-items:center}.row-trip:last-child{border:0}.amount{font-weight:bold;font-size:19px;white-space:nowrap}.stamp{font-size:13px;color:#67746a}.pill{font-size:12px;background:#e6efe9;border-radius:8px;padding:3px 6px}.status{padding:9px;border-radius:9px;background:#f2f5f2;font-size:13px;line-height:1.5}.alert{color:#a73819;background:#fff1e8}.tabs{display:flex;gap:7px}.tabs button{flex:1}.hidden{display:none!important}.footer{font-size:12px;color:#5f796a;text-align:center;margin:18px 0}.negative{color:#a83232!important} 
+</style></head><body><main>
+<h1>🚕 נסיעות</h1>
+<div class="card" style="text-align:center;background:#e2f4e8;border:2px solid #b0d7bc"><div style="font-weight:bold;font-size:19px">נותר לשלם שכירות היום</div><div id="remainingRent" style="font-size:44px;font-weight:800;color:#125238;margin:8px 0">₪200</div><div class="muted">שכירות קבועה 200 ₪ ביום. אשראי ופתק מקזזים את היתרה.</div></div>
+<div class="card">
+<h2>הכתבת נסיעה</h2>
+<label for="spokenText">הטקסט שלך</label>
+<textarea id="spokenText" rows="3" placeholder="לחץ כאן, לחץ על 🎙️ במקלדת האייפון ודבר..." style="width:100%;resize:vertical;padding:14px;border:1px solid #adc6b5;border-radius:12px;font:inherit;min-height:115px"></textarea>
+<div class="muted" style="margin-top:7px">לדוגמה: היום נסיעה מפסגה לרפא, 90 שקל, פתק. אפשר לתקן את הטקסט לפני הביצוע.</div>
+<button id="parseText" style="width:100%;font-size:22px;margin-top:12px;background:#176742">בצע</button>
+<div class="msg" id="voiceMsg" role="status" aria-live="polite"></div>
+</div>
+<div class="card"><h2>נסיעה חדשה</h2>
+<div class="grid2"><div><label for="date">תאריך</label><input id="date" type="date"></div><div><label for="time">שעה</label><input id="time" type="time"></div></div>
+<label>סוג הנסיעה</label><div class="types" id="types"><button class="type active" data-type="מזומן">מזומן</button><button class="type" data-type="אשראי">אשראי</button><button class="type" data-type="פתק">פתק</button><button class="type" data-type="ביט">ביט</button></div>
+<div class="grid2"><div><label for="from">מוצא (לא חובה)</label><input id="from" placeholder="לדוגמה: פסגה"></div><div><label for="to">יעד (לא חובה)</label><input id="to" placeholder="לדוגמה: רפא"></div></div>
+<label for="price">מחיר הנסיעה ₪</label><input id="price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"><button id="save">✓ שמירת נסיעה</button><button id="cancelEdit" class="sub small hidden" style="margin-top:8px;width:100%">ביטול עריכה</button>
+</div>
+<div class="card"><h2>סיכומים</h2><div class="summary"><div class="tile"><small>יומי</small><b id="sumDaily">₪0</b></div><div class="tile"><small>מצטבר</small><b id="sumCumulative">₪0</b></div></div></div>
+<div class="card"><div class="flex"><h2 style="margin:0;flex:2">רשימת נסיעות</h2><button id="todayFilter" class="small sub">היום</button><button id="allFilter" class="small sub">הכול</button></div><div id="trips"></div></div>
+<div class="card"><h2>💾 גיבוי ושחזור</h2><div class="flex"><button id="backup" class="small">גיבוי לקובץ</button><button id="restore" class="small sub">שחזור מקובץ</button></div><input id="restoreFile" type="file" accept=".json,application/json" class="hidden"><div id="backupStatus" class="status" style="margin-top:10px">הנסיעות נשמרות אוטומטית במכשיר. כדאי לגבות לקובץ בתיקיית ״קבצים״ או iCloud Drive באופן קבוע.</div><p class="muted">שחזור מוסיף נסיעות חסרות ומעדכן נסיעות תואמות מהגיבוי, בלי למחוק נסיעות אחרות. גיבוי אינו אוטומטי.</p></div>
+<div class="footer"><button id="copy" class="sub small">העתק קישור לאפליקציה</button></div>
+</main>
+
+<script>
+'use strict';
+const $=x=>document.getElementById(x);const KEY='ofer-rides-v1';const fmt=n=>'₪'+Number(n||0).toLocaleString('he-IL',{maximumFractionDigits:2});const localDate=d=>{const x=d||new Date();return [x.getFullYear(),String(x.getMonth()+1).padStart(2,'0'),String(x.getDate()).padStart(2,'0')].join('-')};const localTime=()=>new Date().toTimeString().slice(0,5);
+let items=[];try{items=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(items))items=[]}catch(e){items=[]}
+let type='מזומן',editId=null,listMode='day';
+function persist(){localStorage.setItem(KEY,JSON.stringify(items));render()}
+function setType(t){type=t;document.querySelectorAll('.type').forEach(b=>b.classList.toggle('active',b.dataset.type===t))}
+document.querySelectorAll('.type').forEach(b=>b.onclick=()=>setType(b.dataset.type));
+function reset(){editId=null;$('date').value=localDate();$('time').value=localTime();$('from').value='';$('to').value='';$('price').value='';setType('מזומן');$('save').textContent='✓ שמירת נסיעה';$('cancelEdit').classList.add('hidden')}
+function edit(x){editId=x.id;$('date').value=x.date;$('time').value=x.time;$('from').value=x.from||'';$('to').value=x.to||'';$('price').value=x.price;setType(x.type);$('save').textContent='✓ שמירת שינוי';$('cancelEdit').classList.remove('hidden');window.scrollTo({top:260,behavior:'smooth'})}
+$('cancelEdit').onclick=reset;
+$('save').onclick=()=>{const price=Number($('price').value);if(!Number.isFinite(price)||price<=0){alert('נא להזין מחיר נסיעה גדול מאפס');$('price').focus();return}const x={id:editId||((crypto.randomUUID&&crypto.randomUUID())||String(Date.now())+Math.random()),date:$('date').value,time:$('time').value,type,from:$('from').value.trim(),to:$('to').value.trim(),price,updatedAt:Date.now()};if(!x.date||!x.time){alert('יש להזין תאריך ושעה');return}items=items.filter(t=>t.id!==x.id);items.push(x);persist();reset();$('spokenText').value='';$('voiceMsg').textContent='✓ הנסיעה נשמרה'};
+function render(){
+const today=localDate();
+const todayTrips=items.filter(x=>x.date===today);
+const daily=todayTrips.reduce((sum,x)=>sum+Number(x.price||0),0);
+const cumulative=items.reduce((sum,x)=>sum+Number(x.price||0),0);
+const creditNotes=todayTrips.filter(x=>x.type==='פתק'||x.type==='אשראי').reduce((sum,x)=>sum+Number(x.price||0),0);
+$('remainingRent').textContent=fmt(Math.max(0,200-creditNotes));
+$('sumDaily').textContent=fmt(daily);
+$('sumCumulative').textContent=fmt(cumulative);
+const visible=items.filter(x=>listMode==='all'||x.date===localDate()).sort((a,b)=>(b.date+' '+b.time).localeCompare(a.date+' '+a.time));$('trips').replaceChildren();if(!visible.length){$('trips').textContent='אין נסיעות להצגה';return}for(const x of visible){const row=document.createElement('div');row.className='row-trip';const text=document.createElement('div');const head=document.createElement('div');head.textContent=x.from&&x.to?x.from+' ← '+x.to:(x.from||x.to||'נסיעה');head.style.fontWeight='bold';const sub=document.createElement('div');sub.className='stamp';sub.textContent=x.date+' '+x.time+' | '+x.type;text.append(head,sub);const side=document.createElement('div');side.style.textAlign='left';const amount=document.createElement('div');amount.className='amount';amount.textContent=fmt(x.price);const editbtn=document.createElement('button');editbtn.className='small sub';editbtn.style.margin='4px';editbtn.textContent='עריכה';editbtn.onclick=()=>edit(x);const del=document.createElement('button');del.className='small sub';del.textContent='מחיקה';del.onclick=()=>{if(confirm('למחוק את הנסיעה?')){items=items.filter(t=>t.id!==x.id);persist()}};side.append(amount,editbtn,del);row.append(text,side);$('trips').append(row)}}
+$('todayFilter').onclick=()=>{listMode='day';render()};$('allFilter').onclick=()=>{listMode='all';render()};$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);alert('הקישור הועתק')}catch(e){prompt('העתק קישור',location.href)}};
+function parseSpeech(raw){let s=raw.replace(/[־–—]/g,' ').trim();let d=localDate(),time=localTime();if(/אתמול/.test(s)){const x=new Date();x.setDate(x.getDate()-1);d=localDate(x)}if(/מחר/.test(s)){const x=new Date();x.setDate(x.getDate()+1);d=localDate(x)}
+const types=[['אשראי',/אשראי|כרטיס/],['פתק',/פתק/],['ביט',/\bbit\b|ביט/],['מזומן',/מזומן|במזומן/]];let found=null;for(const [t,re] of types)if(re.test(s)){found=t;break}
+const priceMatch=s.match(/(?:מחיר|סכום|עלות)\s*(?:של|היא|זה|:)?\s*(\d+(?:[.,]\d+)?)/)||s.match(/(\d+(?:[.,]\d+)?)\s*(?:שקל|שקלים|ש"ח|₪)/)||s.match(/(?:^|\s)(\d+(?:[.,]\d+)?)(?=\s|$)/);let price=priceMatch?Number(priceMatch[1].replace(',','.')):null;
+let route=s.replace(/(?:היום|אתמול|מחר|נסיעה|נסעתי|נסענו|הייתה|היתה|שקל|שקלים|ש"ח|₪|מזומן|במזומן|אשראי|כרטיס|פתק|ביט|מחיר|סכום|עלות)/g,' ').replace(/\d+(?:[.,]\d+)?/g,' ').replace(/[,.:]/g,' ').replace(/\s+/g,' ').trim();
+let from='',to='';let match=route.match(/(?:^|\s)מ(?:ן|־)?(.+?)\s+(?:ל|אל|עד)\s*(.+)/);
+if(!match)match=route.match(/^(.+?)\s+(?:ל|אל|עד)\s*(.+)/);
+if(match){from=match[1].trim();to=match[2].trim()}
+return {d,time,found,price,from,to}}
+function applySpeech(s){const p=parseSpeech(s);$('date').value=p.d;$('time').value=p.time;if(p.found)setType(p.found);if(p.price!==null)$('price').value=p.price;if(p.from)$('from').value=p.from;if(p.to)$('to').value=p.to;$('voiceMsg').textContent='זוהה: '+s+' - בדוק את השדות ולחץ שמירה'}
+function parseDictation(){
+const s=$('spokenText').value.trim();
+if(!s){$('voiceMsg').textContent='נא להכתיב או לכתוב נסיעה לפני לחיצה על בצע';$('spokenText').focus();return}
+applySpeech(s);
+$('voiceMsg').textContent='✓ הפרטים הועברו לשדות. בדוק אותם ולחץ על שמירת נסיעה.';
+document.querySelector('#date').closest('.card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('parseText').onclick=parseDictation;
+$('spokenText').addEventListener('input',()=>{$('voiceMsg').textContent=''});
+function merge(a,b){const map=new Map();for(const x of [...a,...b]){const old=map.get(x.id);if(!old||(x.updatedAt||0)>=(old.updatedAt||0))map.set(x.id,x)}return Array.from(map.values())}
+
+function backupNotice(s,isError=false){$('backupStatus').textContent=s;$('backupStatus').classList.toggle('alert',isError)}
+$('backup').onclick=()=>{
+try{
+const payload={app:'ofer-rides',version:1,exportedAt:new Date().toISOString(),trips:items};
+const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
+const url=URL.createObjectURL(blob);
+const link=document.createElement('a');link.href=url;link.download='nesiot-gibui-'+localDate()+'.json';
+document.body.append(link);link.click();link.remove();
+setTimeout(()=>URL.revokeObjectURL(url),30000);
+backupNotice('✓ קובץ הגיבוי הוכן. ודא שהוא נשמר ב״קבצים״ או ב-iCloud Drive.');
+}catch(e){backupNotice('הגיבוי נכשל: '+e.message,true)}
+};
+$('restore').onclick=()=>$('restoreFile').click();
+$('restoreFile').onchange=async e=>{
+const file=e.target.files&&e.target.files[0];if(!file)return;
+try{
+const data=JSON.parse(await file.text());
+if(!data||data.app!=='ofer-rides'||!Array.isArray(data.trips))throw Error('זה אינו קובץ גיבוי תקין של נסיעות');
+const types=['מזומן','אשראי','פתק','ביט'];
+const valid=data.trips.every(x=>x&&typeof x.id==='string'&&/^\d{4}-\d\d-\d\d$/.test(x.date)&&/^\d\d:\d\d$/.test(x.time)&&types.includes(x.type)&&Number.isFinite(Number(x.price))&&Number(x.price)>0&&(!x.from||typeof x.from==='string')&&(!x.to||typeof x.to==='string'));
+if(!valid)throw Error('קובץ הגיבוי מכיל רשומות לא תקינות');
+if(!confirm('לשחזר '+data.trips.length+' נסיעות מהגיבוי? נסיעות קיימות שלא בקובץ יישמרו.'))return;
+const before=items.length;
+items=merge(items,data.trips);
+persist();
+backupNotice('✓ השחזור הושלם. כעת יש '+items.length+' נסיעות (לפני השחזור '+before+').');
+}catch(err){backupNotice('השחזור נכשל: '+err.message,true)}
+finally{e.target.value=''}
+};
+reset();render();
+</script></body></html>
