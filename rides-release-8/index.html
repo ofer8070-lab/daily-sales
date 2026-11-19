@@ -75,7 +75,7 @@ const priceMatch=s.match(/(?:מחיר|סכום|עלות)\s*(?:של|היא|זה|:
 let from='',to='';
 const labeled=/(?:^|[\s,.;:])(?:מוצא|יעד)\s*[:：-]?\s*/g;
 const labels=Array.from(s.matchAll(labeled));
-const cleanValue=v=>v.replace(/^[\s,.;:]+|[\s,.;:]+$/g,'').replace(/\s+(?:מחיר|סכום|עלות)\s*[:：]?\s*[\d.,]+(?:\s*(?:שקל|שקלים|ש"ח|₪))?\s*$/,'').replace(/\s+[\d.,]+\s*(?:שקל|שקלים|ש"ח|₪)\s*$/,'').replace(/\s+(?:פתק|אשראי|כרטיס|מזומן|במזומן|ביט)\s*$/,'').trim();
+const cleanValue=v=>v.replace(/^[\\s,.;:]+|[\\s,.;:]+$/g,'').replace(/[\\s,.;:]+(?:פתק|אשראי|כרטיס|מזומן|במזומן|ביט)\\s*$/,'').replace(/[\\s,.;:]+(?:מחיר|סכום|עלות)\\s*[:：]?\\s*[\\d.,]+(?:\\s*(?:שקל|שקלים|ש\"ח|₪))?\\s*$/,'').replace(/[\\s,.;:]+[\\d.,]+\\s*(?:שקל|שקלים|ש\"ח|₪)\\s*$/,'').replace(/^[\\s,.;:]+|[\\s,.;:]+$/g,'').trim();
 if(labels.length){
  for(let i=0;i<labels.length;i++){
   const label=labels[i][0].includes('מוצא')?'מוצא':'יעד';
