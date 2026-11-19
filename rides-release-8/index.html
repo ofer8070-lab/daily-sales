@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="he" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#103c2d"><title>נסיעות - גרסה 8.5</title>
+<html lang="he" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#103c2d"><title>נסיעות - גרסה 8.6</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#e9f4eb;color:#163226;font-family:Arial,"Arial Hebrew",sans-serif;font-size:17px}main{max-width:650px;margin:auto;padding:15px 14px 80px}h1{text-align:center;margin:8px 0;font-size:32px;color:#15583c}h2{font-size:21px;margin:4px 0 13px}.card{background:white;border:1px solid #cbded0;border-radius:17px;padding:15px;margin:12px 0;box-shadow:0 2px 7px #0001}.muted{font-size:13px;color:#64766a;line-height:1.5}label{font-weight:bold;display:block;margin:9px 0 5px}input,select{width:100%;padding:12px;border:1px solid #adc6b5;border-radius:10px;font:inherit;background:#f5fcf7;color:#163226;min-width:0}input[type=date]{max-width:190px}input[type=time]{max-width:138px}input[type=number]{font-size:25px;font-weight:bold}button{border:0;border-radius:11px;padding:13px 17px;font:inherit;font-weight:bold;cursor:pointer;background:#16714a;color:white}button:disabled{opacity:.5}.sub{background:#edf5ef;color:#1a533a;border:1px solid #bfd6c5}.danger{background:#a53232}.small{font-size:14px;padding:8px 11px}.flex{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.flex>*{flex:1}.mic-wrap{text-align:center;padding:12px 0 3px}.mic{width:126px;height:126px;border-radius:50%;font-size:56px;background:linear-gradient(150deg,#208359,#0d4e36);box-shadow:0 7px 0 #a3caba,0 0 0 9px #e5f5e9;display:inline-flex;align-items:center;justify-content:center;border:0}.mic.on{background:#d93140;box-shadow:0 0 0 13px #ffdfe2;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(1.05)}}.msg{text-align:center;min-height:24px;font-weight:bold;color:#15583c;margin-top:12px}.types{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.type{background:#f1f7f3;color:#28533c;border:2px solid #d3e5d8;padding:11px 2px;font-size:15px}.type.active{background:#176742;color:white;border-color:#176742}.grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:9px;width:100%;max-width:100%}.grid2>div{min-width:0;width:100%;overflow:hidden}.grid2 input[type="date"],.grid2 input[type="time"]{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:10px 5px;font-size:15px;line-height:22px;min-height:45px;-webkit-appearance:none;appearance:none}.grid2 input[type="date"]::-webkit-date-and-time-value,.grid2 input[type="time"]::-webkit-date-and-time-value{text-align:right;min-width:0}.grid2 input[type="date"]::-webkit-datetime-edit,.grid2 input[type="time"]::-webkit-datetime-edit{padding:0;min-width:0}.summary{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tile{background:#edf7f0;padding:12px;border-radius:12px;text-align:center}.tile b{display:block;font-size:26px;margin:6px 0;color:#125238;font-variant-numeric:tabular-nums}.tile small{color:#617368}#save{width:100%;background:#e9c832;color:#172816;margin-top:13px;font-size:22px}.row-trip{padding:12px 0;border-bottom:1px solid #dce9de;display:flex;justify-content:space-between;gap:8px;align-items:center}.row-trip:last-child{border:0}.amount{font-weight:bold;font-size:19px;white-space:nowrap}.stamp{font-size:13px;color:#67746a}.pill{font-size:12px;background:#e6efe9;border-radius:8px;padding:3px 6px}.status{padding:9px;border-radius:9px;background:#f2f5f2;font-size:13px;line-height:1.5}.alert{color:#a73819;background:#fff1e8}.tabs{display:flex;gap:7px}.tabs button{flex:1}.hidden{display:none!important}.footer{font-size:12px;color:#5f796a;text-align:center;margin:18px 0}.negative{color:#a83232!important} 
 .grid2 input[type="date"],.grid2 input[type="time"]{border:none!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;outline-offset:2px;padding:8px 2px!important}
-.rides-summary{width:100%;border-collapse:collapse;table-layout:fixed;font-size:16px}.rides-summary th,.rides-summary td{padding:11px 5px;text-align:right;border-bottom:1px solid #dfebdf}.rides-summary th:not(:first-child),.rides-summary td:not(:first-child){text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}.rides-summary th{background:#edf6ef;color:#28543c}.rides-summary th:first-child,.rides-summary td:first-child{width:30%}.rides-summary th:nth-child(2),.rides-summary td:nth-child(2){width:33%}.rides-summary th:nth-child(3),.rides-summary td:nth-child(3){width:37%}.summary-bold{font-weight:bold;background:#f3f8f3}</style></head><body><main>
-<h1>🚕 נסיעות</h1><div style="text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;margin:5px auto 11px"><span id="versionTag" style="background:#153e2d;color:#fff;border-radius:20px;padding:6px 12px;font-size:13px;font-weight:bold">גרסה 8.5 - 19.11.2026</span><button id="refreshApp" class="sub small" style="flex:none">🔄 בדוק עדכון</button></div>
+.rides-summary{width:100%;border-collapse:collapse;table-layout:fixed;font-size:16px}.rides-summary th,.rides-summary td{padding:11px 5px;text-align:right;border-bottom:1px solid #dfebdf}.rides-summary th:not(:first-child),.rides-summary td:not(:first-child){text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}.rides-summary th{background:#edf6ef;color:#28543c}.rides-summary th:first-child,.rides-summary td:first-child{width:30%}.rides-summary th:nth-child(2),.rides-summary td:nth-child(2){width:33%}.rides-summary th:nth-child(3),.rides-summary td:nth-child(3){width:37%}.summary-bold{font-weight:bold;background:#f3f8f3}.place-wrap{position:relative;overflow:visible!important}.place-suggestions{position:absolute;right:0;left:0;top:100%;z-index:40;background:#fff;border:1px solid #aacdb3;border-radius:10px;box-shadow:0 6px 18px #0003;max-height:200px;overflow-y:auto;overscroll-behavior:contain}.place-option{width:100%;display:block;text-align:right;border:0;border-radius:0;border-bottom:1px solid #edf0ed;background:#fff;color:#163226;font-size:16px;font-weight:normal;padding:12px 10px}.place-option:active{background:#e0f2e6}.place-option:last-child{border-bottom:0}
+</style></head><body><main>
+<h1>🚕 נסיעות</h1><div style="text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;margin:5px auto 11px"><span id="versionTag" style="background:#153e2d;color:#fff;border-radius:20px;padding:6px 12px;font-size:13px;font-weight:bold">גרסה 8.6 - 19.11.2026</span><button id="refreshApp" class="sub small" style="flex:none">🔄 בדוק עדכון</button></div>
 <div style="display:flex;justify-content:center;margin:6px 0 10px"><span id="topBalance" style="font-size:19px;font-weight:800;color:#ba2634;direction:ltr" aria-label="יתרה יומית">-₪200</span></div>
 <div class="card">
 <h2>הכתבת נסיעה</h2>
@@ -17,7 +18,7 @@
 <div class="card"><h2>נסיעה חדשה</h2>
 <div class="grid2"><div><label for="date">תאריך</label><input id="date" type="date"></div><div><label for="time">שעה</label><input id="time" type="time"></div></div>
 <label>סוג הנסיעה</label><div class="types" id="types"><button class="type active" data-type="מזומן">מזומן</button><button class="type" data-type="אשראי">אשראי</button><button class="type" data-type="פתק">פתק</button><button class="type" data-type="ביט">ביט</button></div>
-<div class="grid2"><div><label for="from">מוצא (לא חובה)</label><input id="from" placeholder="לדוגמה: פסגה"></div><div><label for="to">יעד (לא חובה)</label><input id="to" placeholder="לדוגמה: רפא"></div></div>
+<div class="grid2"><div class="place-wrap"><label for="from">מוצא (לא חובה)</label><input id="from" placeholder="הקלד מוצא" autocomplete="off" aria-autocomplete="list" aria-controls="fromSuggestions"><div class="place-suggestions hidden" id="fromSuggestions" role="listbox"></div></div><div class="place-wrap"><label for="to">יעד (לא חובה)</label><input id="to" placeholder="הקלד יעד" autocomplete="off" aria-autocomplete="list" aria-controls="toSuggestions"><div class="place-suggestions hidden" id="toSuggestions" role="listbox"></div></div></div>
 <label for="price">מחיר הנסיעה ₪</label><input id="price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"><button id="save">✓ שמירת נסיעה</button><button id="cancelEdit" class="sub small hidden" style="margin-top:8px;width:100%">ביטול עריכה</button>
 </div>
 <div class="card"><div class="flex"><h2 style="margin:0;flex:2">רשימת נסיעות</h2><button id="todayFilter" class="small sub">היום</button><button id="allFilter" class="small sub">הכול</button></div><div id="trips"></div></div>
@@ -39,6 +40,24 @@
 'use strict';
 const $=x=>document.getElementById(x);const KEY='ofer-rides-v1';const fmt=n=>'₪'+Number(n||0).toLocaleString('he-IL',{maximumFractionDigits:2});const localDate=d=>{const x=d||new Date();return [x.getFullYear(),String(x.getMonth()+1).padStart(2,'0'),String(x.getDate()).padStart(2,'0')].join('-')};const localTime=()=>new Date().toTimeString().slice(0,5);
 let items=[];try{items=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(items))items=[]}catch(e){items=[]}
+const HISTORY_KEY=KEY+'-history';
+let placeHistory={from:[],to:[]};
+try{const loaded=JSON.parse(localStorage.getItem(HISTORY_KEY)||'{}');for(const field of ['from','to'])if(Array.isArray(loaded[field]))placeHistory[field]=loaded[field].filter(x=>typeof x==='string').slice(0,300)}catch(e){}
+function normalizePlace(value){return String(value||'').trim().replace(/\s+/g,' ')}
+function addPlace(field,value){const name=normalizePlace(value);if(!name)return;const array=placeHistory[field];placeHistory[field]=[name,...array.filter(x=>x.localeCompare(name,'he',{sensitivity:'base'})!==0)].slice(0,300)}
+function savePlaceHistory(){localStorage.setItem(HISTORY_KEY,JSON.stringify(placeHistory))}
+function saveTripPlaces(trip){addPlace('from',trip.from);addPlace('to',trip.to);savePlaceHistory()}
+for(const trip of items){addPlace('from',trip.from);addPlace('to',trip.to)}
+savePlaceHistory();
+function showPlaceSuggestions(field){
+const input=$(field),list=$(field+'Suggestions');list.replaceChildren();
+const query=normalizePlace(input.value).toLocaleLowerCase('he');
+const matches=placeHistory[field].filter(name=>!query||name.toLocaleLowerCase('he').includes(query)).slice(0,12);
+for(const name of matches){const button=document.createElement('button');button.type='button';button.className='place-option';button.role='option';button.textContent=name;button.addEventListener('pointerdown',e=>e.preventDefault());button.onclick=()=>{input.value=name;list.classList.add('hidden');input.dispatchEvent(new Event('change',{bubbles:true}))};list.append(button)}
+list.classList.toggle('hidden',matches.length===0);
+}
+for(const field of ['from','to']){$(field).addEventListener('focus',()=>showPlaceSuggestions(field));$(field).addEventListener('input',()=>showPlaceSuggestions(field))}
+document.addEventListener('pointerdown',e=>{for(const field of ['from','to']){const wrap=$(field).closest('.place-wrap');if(!wrap.contains(e.target))$(field+'Suggestions').classList.add('hidden')}});
 let type='מזומן',editId=null,listMode='day';
 function persist(){localStorage.setItem(KEY,JSON.stringify(items));render()}
 function setType(t){type=t;document.querySelectorAll('.type').forEach(b=>b.classList.toggle('active',b.dataset.type===t))}
@@ -46,7 +65,7 @@ document.querySelectorAll('.type').forEach(b=>b.onclick=()=>setType(b.dataset.ty
 function reset(){editId=null;$('date').value=localDate();$('time').value=localTime();$('from').value='';$('to').value='';$('price').value='';setType('מזומן');$('save').textContent='✓ שמירת נסיעה';$('cancelEdit').classList.add('hidden')}
 function edit(x){editId=x.id;$('date').value=x.date;$('time').value=x.time;$('from').value=x.from||'';$('to').value=x.to||'';$('price').value=x.price;setType(x.type);$('save').textContent='✓ שמירת שינוי';$('cancelEdit').classList.remove('hidden');window.scrollTo({top:260,behavior:'smooth'})}
 $('cancelEdit').onclick=reset;
-$('save').onclick=()=>{const price=Number($('price').value);if(!Number.isFinite(price)||price<=0){alert('נא להזין מחיר נסיעה גדול מאפס');$('price').focus();return}const x={id:editId||((crypto.randomUUID&&crypto.randomUUID())||String(Date.now())+Math.random()),date:$('date').value,time:$('time').value,type,from:$('from').value.trim(),to:$('to').value.trim(),price,updatedAt:Date.now()};if(!x.date||!x.time){alert('יש להזין תאריך ושעה');return}items=items.filter(t=>t.id!==x.id);items.push(x);persist();reset();$('spokenText').value='';$('voiceMsg').textContent='✓ הנסיעה נשמרה'};
+$('save').onclick=()=>{const price=Number($('price').value);if(!Number.isFinite(price)||price<=0){alert('נא להזין מחיר נסיעה גדול מאפס');$('price').focus();return}const x={id:editId||((crypto.randomUUID&&crypto.randomUUID())||String(Date.now())+Math.random()),date:$('date').value,time:$('time').value,type,from:$('from').value.trim(),to:$('to').value.trim(),price,updatedAt:Date.now()};if(!x.date||!x.time){alert('יש להזין תאריך ושעה');return}items=items.filter(t=>t.id!==x.id);items.push(x);saveTripPlaces(x);persist();reset();$('spokenText').value='';$('voiceMsg').textContent='✓ הנסיעה נשמרה'};
 function render(){
 const today=localDate();
 const todayTrips=items.filter(x=>x.date===today);
@@ -105,7 +124,7 @@ function merge(a,b){const map=new Map();for(const x of [...a,...b]){const old=ma
 function backupNotice(s,isError=false){$('backupStatus').textContent=s;$('backupStatus').classList.toggle('alert',isError)}
 $('backup').onclick=()=>{
 try{
-const payload={app:'ofer-rides',version:1,exportedAt:new Date().toISOString(),trips:items};
+const payload={app:'ofer-rides',version:1,exportedAt:new Date().toISOString(),trips:items,placeHistory};
 const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
 const url=URL.createObjectURL(blob);
 const link=document.createElement('a');link.href=url;link.download='nesiot-gibui-'+localDate()+'.json';
@@ -126,7 +145,9 @@ if(!valid)throw Error('קובץ הגיבוי מכיל רשומות לא תקינ
 if(!confirm('לשחזר '+data.trips.length+' נסיעות מהגיבוי? נסיעות קיימות שלא בקובץ יישמרו.'))return;
 const before=items.length;
 items=merge(items,data.trips);
-persist();
+if(data.placeHistory&&typeof data.placeHistory==='object'){for(const field of ['from','to'])if(Array.isArray(data.placeHistory[field]))for(const value of data.placeHistory[field])if(typeof value==='string')addPlace(field,value)}
+for(const trip of data.trips){addPlace('from',trip.from);addPlace('to',trip.to)}
+savePlaceHistory();persist();
 backupNotice('✓ השחזור הושלם. כעת יש '+items.length+' נסיעות (לפני השחזור '+before+').');
 }catch(err){backupNotice('השחזור נכשל: '+err.message,true)}
 finally{e.target.value=''}
