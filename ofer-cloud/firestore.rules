@@ -44,6 +44,19 @@ service cloud.firestore {
       allow read, write: if isAdmin() || approved('daily-sales');
     }
 
+    // Private work schedule: verified Google administrator only.
+    match /workSchedule/manager {
+      allow get: if isAdmin();
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['data', 'revision', 'updatedBy', 'updatedAt'])
+        && request.resource.data.keys().hasAll(['data', 'revision', 'updatedBy', 'updatedAt'])
+        && request.resource.data.data is map
+        && request.resource.data.revision is int
+        && request.resource.data.revision > 0
+        && request.resource.data.updatedBy == request.auth.uid
+        && request.resource.data.updatedAt == request.time;
+    }
+
     // All other documents stay private unless an app-specific rule is added.
     match /{document=**} {
       allow read, write: if false;
